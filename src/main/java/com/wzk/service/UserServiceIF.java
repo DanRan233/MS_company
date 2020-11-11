@@ -7,4 +7,5 @@ package com.wzk.service;
  * @date 2020/11/11 20:24
  */
 public interface UserServiceIF {
+
 }
