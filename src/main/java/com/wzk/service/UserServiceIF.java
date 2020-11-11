@@ -1,15 +1,10 @@
 package com.wzk.service;
 
-import java.util.Map;
-
 /**
  * @author DanRan233
- * @title: UserServiceIF
- * @projectName demo_One
+ * @projectName MS_company
  * @description: TODO
- * @date 2020/8/22 16:39
+ * @date 2020/11/11 20:24
  */
 public interface UserServiceIF {
-
-
 }

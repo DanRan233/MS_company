@@ -2,12 +2,9 @@ package com.wzk.dao;
 
 /**
  * @author DanRan233
- * @title: UserDao
- * @projectName demo_One
+ * @projectName MS_company
  * @description: TODO
- * @date 2020/8/22 16:08
+ * @date 2020/11/11 20:23
  */
 public interface UserDao {
-
-
 }
