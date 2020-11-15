@@ -13,6 +13,15 @@ public interface UserDao {
 
     /**
      * description  TODO
+     * date         2020/11/15 17:12
+     * @author      DanRan233
+     * @Param       [user]
+     * @return      com.wzk.entity.User
+     */
+    User getTel(User user);
+
+    /**
+     * description  TODO
      * date         2020/11/12 0:04
      * @author      DanRan233
      * @Param       [user]
@@ -45,7 +54,7 @@ public interface UserDao {
      * @Param       [userState]
      * @return      int
      */
-    int addLoginType(UserState userState);
+    int addLoginInfo(UserState userState);
 
 
 }

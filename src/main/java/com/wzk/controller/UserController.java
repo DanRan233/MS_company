@@ -1,6 +1,7 @@
 package com.wzk.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wzk.entity.Result;
 import com.wzk.entity.User;
 import com.wzk.entity.UserState;
 import com.wzk.service.UserServiceIF;
@@ -35,10 +36,23 @@ public class UserController {
      * @Param [user]
      */
     @RequestMapping("/register")
-    public String register(@RequestBody User user) {
+    public Result register(@RequestBody User user) {
         System.out.println(user);
         user.setStateId(1);
-        return JSONObject.toJSONString(userServiceIF.addUser(user));
+        return userServiceIF.addUser(user);
+    }
+
+    /**
+     * description  TODO
+     * date         2020/11/15 17:23
+     * @author      DanRan233
+     * @Param       [user]
+     * @return      java.lang.String
+     */
+    @RequestMapping("/getTel")
+    public Result getTel(@RequestBody User user){
+        System.out.println(user);
+        return userServiceIF.getTel(user);
     }
 
     /**
@@ -50,21 +64,14 @@ public class UserController {
      * @Param [user, req]
      */
     @RequestMapping("/login")
-    public String login(@RequestBody User user, HttpServletRequest req) {
+    public Result login(@RequestBody User user, HttpServletRequest req) {
         String ip = req.getRemoteAddr();
         UserState userState = new UserState();
         userState.setLoginIP(ip);
-        Map<String, Object> map = new HashMap<>();
-        map.put("result",0);
-        map.put("resultInfo","用户名或密码未输入");
-        if ("".equals(user.getuName()) || user.getuName() == null || "".equals(user.getPassword()) || user.getPassword() == null) {
-            map.put("result",0);
-            map.put("resultInfo","用户名或密码未输入");
-            return JSONObject.toJSONString(map);
+        if ("".equals(user.getTel()) || user.getTel() == null || "".equals(user.getPassword()) || user.getPassword() == null) {
+            return new Result(2001,"手机号或密码为空");
         }
-        map = userServiceIF.login(user, userState);
-
-        return JSONObject.toJSONString(map);
+        return userServiceIF.login(user, userState);
     }
 
 

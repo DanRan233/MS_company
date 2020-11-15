@@ -1,6 +1,7 @@
 package com.wzk.service;
 
 import com.wzk.dao.UserDao;
+import com.wzk.entity.Result;
 import com.wzk.entity.User;
 import com.wzk.entity.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,60 +23,56 @@ public class UserServiceImpl implements UserServiceIF {
     UserDao userDao;
 
     @Override
-    public Map<String,Object> addUser(User user) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("result",0);
-        map.put("resultInfo","");
-        int i=0;
-        try {
-            i=userDao.addUser(user);
-        }catch (Exception e){
-            e.printStackTrace();
-            map.put("resultInfo",e.getMessage());
+    public Result getTel(User user) {
+        Result result = new Result();
+        user = userDao.getTel(user);
+        result.setCode(2000);
+        result.setMessage("成功");
+        result.setData(user);
+        return result;
+    }
+
+    @Override
+    public Result addUser(User user) {
+        Result result = new Result(2001, "未执行");
+        int i = 0;
+        i = userDao.addUser(user);
+
+        if (i > 0) {
+            result.setCode(2000);
+            result.setMessage("注册成功");
+        } else {
+            result.setMessage("注册失败");
         }
-        if (i>0){
-            map.put("result",1);
-            map.put("resultInfo","注册成功");
-            return map;
-        }else {
-            map.put("result",0);
-            map.put("resultInfo","注册失败");
-            return map;
-        }
+        return result;
 
     }
 
     @Override
-    public Map<String,Object> login(User user, UserState userState) {
-        User u=new User();
-        Map<String,Object> map = new HashMap<>();
-        map.put("result",0);
-        map.put("resultInfo","");
-        try {
-            u=userDao.loginUser(user);
-            if(u==null){
-                map.put("result",1);
-                map.put("resultInfo","用户名或密码错误");
-            } else if (u.getuId()!=0&&u.getStateId()!=2){
-                u.setStateId(2);
-                userState.setuId(u.getuId());
-                userState.setStateId(2);
-                userDao.updateUserStateId(u);
-                userDao.addLoginType(userState);
-                map.put("result",3);
-                map.put("resultInfo","登录成功");
-                map.put("data",u);
-            }else if (u.getStateId()==2){
-                u.setStateId(-1);
-                map.put("result",2);
-                map.put("resultInfo","用户已登录");
-            }else {
-                map.put("result",1);
-                map.put("resultInfo","用户名或密码错误");
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+    public Result login(User user, UserState userState) {
+        User u;
+        Result result = new Result();
+        u = userDao.loginUser(user);
+        if (u == null) {
+            result.setMessage("手机号或密码错误");
+        } else if (u.getuId() != 0 && u.getStateId() != 2) {
+            u.setStateId(2);
+            userState.setuId(u.getuId());
+            userState.setStateId(2);
+            userDao.updateUserStateId(u);
+            userDao.addLoginInfo(userState);
+            result.setCode(2000);
+            result.setMessage("登录成功");
+            result.setData(u);
+        } else if (u.getStateId() == 2) {
+            u.setStateId(-1);
+            result.setCode(2002);
+            result.setMessage("用户已登录");
+        } else {
+            result.setCode(2001);
+            result.setMessage("手机号或密码错误");
         }
-        return map;
+
+        return result;
     }
 }

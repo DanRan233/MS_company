@@ -1,5 +1,6 @@
 package com.wzk.service;
 
+import com.wzk.entity.Result;
 import com.wzk.entity.User;
 import com.wzk.entity.UserState;
 
@@ -13,7 +14,9 @@ import java.util.Map;
  */
 public interface UserServiceIF {
 
-    Map<String,Object> addUser(User user);
+    Result getTel(User user);
 
-    Map<String,Object>  login(User user, UserState userState);
+    Result addUser(User user);
+
+    Result  login(User user, UserState userState);
 }

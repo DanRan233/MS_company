@@ -2,7 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wzk.dao.UserDao" >
+<mapper namespace="com.wzk.dao.UserDao">
+
+    <!-- 查询手机号是否存在 -->
+    <select id="getTel" parameterType="User" resultType="User">
+        select uId,tel from user where tel=#{tel};
+    </select>
 
     <!-- 添加用户SQL -->
     <insert id="addUser" parameterType="User">
@@ -11,18 +16,22 @@
 
     <!-- 判断用户名和密码是否正确 -->
     <select id="loginUser" parameterType="User" resultType="User">
-        select uId,uName,stateId from User where uName=#{uName} and password=#{password};
+        select uId,uName,stateId from User where tel=#{tel} and password=#{password};
     </select>
 
     <!-- 更新用户登录状态 -->
     <update id="updateUserStateId" parameterType="User">
-        update user set stateId=2 where uId=#{uId}
+        update user set stateId=#{stateId} where uId=#{uId}
     </update>
 
     <!-- 记录用户登录信息 -->
-    <insert id="addLoginType" parameterType="UserState">
+    <insert id="addLoginInfo" parameterType="UserState">
         insert into user_state(uId,stateId,loginTime,loginIP) values(#{uId},#{stateId},(select now()),#{loginIP});
     </insert>
 
+    <!-- 用户退退出时间记录 -->
+    <update id="updateLogoutTime" parameterType="UserState">
+        update user_state set logoutTime=(select now()),stateId=#{stateId} where uId=#{uId} and stateId=2;
+    </update>
 
 </mapper>

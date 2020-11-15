@@ -13,7 +13,7 @@ public class User {
     String uName;
     String password;
     int sex;
-    int tel;
+    String tel;
     String email;
     String address;
     int type;
@@ -24,7 +24,7 @@ public class User {
     }
 
 
-    public User(int uId, String uName, String password, int sex, int tel, String email, String address, int type, Date birthday, int stateId) {
+    public User(int uId, String uName, String password, int sex, String tel, String email, String address, int type, Date birthday, int stateId) {
         this.uId = uId;
         this.uName = uName;
         this.password = password;
@@ -69,11 +69,11 @@ public class User {
         this.sex = sex;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
