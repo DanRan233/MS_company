@@ -18,11 +18,13 @@ public class User {
     String address;
     int type;
     Date birthday;
+    int stateId;
 
     public User() {
     }
 
-    public User(int uId, String uName, String password, int sex, int tel, String email, String address, int type, Date birthday) {
+
+    public User(int uId, String uName, String password, int sex, int tel, String email, String address, int type, Date birthday, int stateId) {
         this.uId = uId;
         this.uName = uName;
         this.password = password;
@@ -32,6 +34,7 @@ public class User {
         this.address = address;
         this.type = type;
         this.birthday = birthday;
+        this.stateId = stateId;
     }
 
     public int getuId() {
@@ -106,6 +109,14 @@ public class User {
         this.birthday = birthday;
     }
 
+    public int getStateId() {
+        return stateId;
+    }
+
+    public void setStateId(int stateId) {
+        this.stateId = stateId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -118,6 +129,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", type=" + type +
                 ", birthday=" + birthday +
+                ", stateId=" + stateId +
                 '}';
     }
 }

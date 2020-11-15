@@ -1,5 +1,10 @@
 package com.wzk.service;
 
+import com.wzk.entity.User;
+import com.wzk.entity.UserState;
+
+import java.util.Map;
+
 /**
  * @author DanRan233
  * @projectName MS_company
@@ -8,4 +13,7 @@ package com.wzk.service;
  */
 public interface UserServiceIF {
 
+    Map<String,Object> addUser(User user);
+
+    Map<String,Object>  login(User user, UserState userState);
 }
