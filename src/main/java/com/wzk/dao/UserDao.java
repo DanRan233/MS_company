@@ -1,6 +1,7 @@
 package com.wzk.dao;
 
 import com.wzk.entity.User;
+import com.wzk.entity.UserAcCode;
 import com.wzk.entity.UserState;
 
 /**
@@ -56,5 +57,6 @@ public interface UserDao {
      */
     int addLoginInfo(UserState userState);
 
+    int addCode(UserAcCode userAcCode);
 
 }

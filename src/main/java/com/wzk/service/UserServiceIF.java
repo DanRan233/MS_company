@@ -1,9 +1,12 @@
 package com.wzk.service;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.wzk.entity.Result;
 import com.wzk.entity.User;
+import com.wzk.entity.UserAcCode;
 import com.wzk.entity.UserState;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -18,5 +21,7 @@ public interface UserServiceIF {
 
     Result addUser(User user);
 
-    Result  login(User user, UserState userState);
+    Result  login(User user, UserState userState, HttpSession session);
+
+    Result addCode(UserAcCode userAcCode);
 }

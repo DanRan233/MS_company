@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-		http://www.springframework.org/schema/tx
-		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <!-- 引入jdbc.properties配置文件 -->
+<!-- 引入jdbc.properties配置文件 -->
     <bean id="propertyCongfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"></property>
     </bean>
@@ -75,6 +76,29 @@
         <property name="mapperLocations" value="classpath:com/wzk/dao/*.xml"></property>
         <!--类型别名  dao映射可以直接返回实体对象-->
         <property name="typeAliasesPackage" value="com.wzk.entity"></property>
+        <!--配置PageHelper-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 分页参数参考官方-->
+                        <!-- <value>
+                                helperDialect=mysql
+                                reasonable=true
+                                supportMethodsArguments=true
+                                params=count=countSql
+                                autoRuntimeDialect=true
+                          </value> -->
+                        <props>
+                            <!--数据库类型-->
+                            <prop key="helperDialect">mysql</prop>
+                            <!--页码超出范围自动修正-->
+                            <prop key="reasonable">true</prop>
+                        </props>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!-- 配置扫描dao接口 -->

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wzk.dao.StaffDao">
+
+    <resultMap id="staff" type="com.wzk.entity.Staff">
+        <result column="birthday" property="birthday" jdbcType="DATE"></result>
+    </resultMap>
+
+    <!-- 添加员工 -->
+    <insert id="addStaff" parameterType="Staff">
+        insert into staff(sName,sNo,tel,age,address,birthday,depId,posId,salary)
+        values(#{sName},#{sNo},#{tel},#{age},#{address},#{birthday},#{depId},#{posId},#{salary});
+    </insert>
+
+    <!-- 更新员工信息 -->
+    <update id="updateStaff" parameterType="Staff">
+        update staff set sNo=#{sNo},sName=#{sName},tel=#{tel},age=#{age},address=#{address},birthday=#{birthday} ,
+        depId=#{depId},posId=#{posId},salary=#{salary} where sId=#{sId};
+    </update>
+
+    <!-- 获取员工列表 -->
+    <select id="getStaff" resultType="Staff" parameterType="Staff">
+        select sId,sNo,sName,tel,age,address,birthday,depId,posId,salary from staff where 1=1
+        <if test="sId!=0">
+            and sId=#{sId}
+        </if>
+        <if test='sName!="-1"'>
+            and sName like concat('%',#{sName},'%')
+        </if>
+    </select>
+
+    <!-- 删除员工信息 -->
+    <delete id="delStaff" parameterType="int">
+        delete from staff where sId=#{sId};
+    </delete>
+
+    <!-- 添加部门信息 -->
+    <insert id="addDep" parameterType="Department">
+        insert into department (depNo,depName)
+        values(#{depNo},#{depName});
+    </insert>
+
+    <!-- 更新部门信息 -->
+    <update id="updateDep" parameterType="Department">
+        update department set depNo=#{depNo},depName=#{depName} where depId=#{depId} ;
+    </update>
+
+    <!-- 获取部门信息 -->
+    <select id="getDep" resultType="Department" parameterType="Department">
+        select depId,depNo,depName from department where 1=1
+        <if test='depId!=0'>
+            and depId=#{depId}
+        </if>
+        <if test='depName!="-1"'>
+            and depName like concat('%',#{depName},'%')
+        </if>
+    </select>
+
+    <select id="getDepNum" parameterType="String" resultType="int">
+        select count(*) from department where depId=#{depId};
+    </select>
+    <!-- 删除部门信息 -->
+    <delete id="delDep" parameterType="String">
+        delete from department where depId=#{depId};
+    </delete>
+
+    <!-- 添加职位信息 -->
+    <insert id="addPos" parameterType="Position">
+        insert into position (posNo,posName)
+        values(#{posNo},#{posName});
+    </insert>
+
+    <!-- 更新职位信息 -->
+    <update id="updatePos" parameterType="Position">
+        update position set posNo=#{posNo},posName=#{posName} where posId=#{posId};
+    </update>
+
+    <select id="getPosNum" parameterType="String" resultType="int">
+        select count(*) from position where posId=#{posId};
+    </select>
+
+    <!-- 获取职位信息 -->
+    <select id="getPos" resultType="Position" parameterType="Position">
+        select posId,posNo,posName from position where 1=1
+        <if test='posId!=0'>
+            and posId=#{posId}
+        </if>
+        <if test='posName!="-1"'>
+            and posName like concat('%',#{posName},'%')
+        </if>
+    </select>
+
+    <!-- 删除职位信息 -->
+    <delete id="delPos" parameterType="String">
+        delete from position where posId=#{posId};
+    </delete>
+
+</mapper>

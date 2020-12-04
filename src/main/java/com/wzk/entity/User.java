@@ -23,6 +23,10 @@ public class User {
     public User() {
     }
 
+    public User(int uId, int stateId) {
+        this.uId = uId;
+        this.stateId = stateId;
+    }
 
     public User(int uId, String uName, String password, int sex, String tel, String email, String address, int type, Date birthday, int stateId) {
         this.uId = uId;

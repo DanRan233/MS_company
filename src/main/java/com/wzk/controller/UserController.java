@@ -1,18 +1,18 @@
 package com.wzk.controller;
 
-import com.alibaba.fastjson.JSONObject;
+import com.aliyuncs.exceptions.ClientException;
 import com.wzk.entity.Result;
 import com.wzk.entity.User;
+import com.wzk.entity.UserAcCode;
 import com.wzk.entity.UserState;
 import com.wzk.service.UserServiceIF;
+import com.wzk.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * @author DanRan233
@@ -22,10 +22,13 @@ import java.util.Map;
  */
 @RequestMapping("/user")
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
     UserServiceIF userServiceIF;
+
+    private RandomUtil randomUtil = new RandomUtil();
 
     /**
      * description  TODO
@@ -45,12 +48,13 @@ public class UserController {
     /**
      * description  TODO
      * date         2020/11/15 17:23
-     * @author      DanRan233
-     * @Param       [user]
-     * @return      java.lang.String
+     *
+     * @return java.lang.String
+     * @author DanRan233
+     * @Param [user]
      */
     @RequestMapping("/getTel")
-    public Result getTel(@RequestBody User user){
+    public Result getTel(@RequestBody User user) {
         System.out.println(user);
         return userServiceIF.getTel(user);
     }
@@ -64,15 +68,20 @@ public class UserController {
      * @Param [user, req]
      */
     @RequestMapping("/login")
-    public Result login(@RequestBody User user, HttpServletRequest req) {
+    public Result login(@RequestBody User user, HttpServletRequest req, HttpSession session) {
         String ip = req.getRemoteAddr();
         UserState userState = new UserState();
         userState.setLoginIP(ip);
-        if ("".equals(user.getTel()) || user.getTel() == null || "".equals(user.getPassword()) || user.getPassword() == null) {
-            return new Result(2001,"手机号或密码为空");
-        }
-        return userServiceIF.login(user, userState);
+        return userServiceIF.login(user, userState, session);
     }
 
+
+    @RequestMapping("/getCode")
+    public Result getCode(@RequestBody UserAcCode userAcCode) {
+        userAcCode.setAcCode(randomUtil.getStrRandom(6));
+        userAcCode.setExTime(new Date());
+        System.out.println(userAcCode);
+        return userServiceIF.addCode(userAcCode);
+    }
 
 }

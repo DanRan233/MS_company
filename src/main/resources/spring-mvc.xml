@@ -30,7 +30,6 @@
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
-
     <!-- 解除servlet对静态资源文件访问的限制 -->
     <mvc:default-servlet-handler/>
 </beans>

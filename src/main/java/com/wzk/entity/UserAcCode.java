@@ -12,14 +12,16 @@ public class UserAcCode {
     int uId;
     String acCode;
     Date exTime;
+    String tel;
 
     public UserAcCode() {
     }
 
-    public UserAcCode(int uId, String acCode, Date exTime) {
+    public UserAcCode(int uId, String acCode, Date exTime, String tel) {
         this.uId = uId;
         this.acCode = acCode;
         this.exTime = exTime;
+        this.tel = tel;
     }
 
     public int getuId() {
@@ -46,12 +48,21 @@ public class UserAcCode {
         this.exTime = exTime;
     }
 
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     @Override
     public String toString() {
         return "UserAcCode{" +
                 "uId=" + uId +
                 ", acCode='" + acCode + '\'' +
                 ", exTime=" + exTime +
+                ", tel='" + tel + '\'' +
                 '}';
     }
 }

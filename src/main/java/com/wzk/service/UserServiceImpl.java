@@ -1,12 +1,16 @@
 package com.wzk.service;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.wzk.dao.UserDao;
 import com.wzk.entity.Result;
 import com.wzk.entity.User;
+import com.wzk.entity.UserAcCode;
 import com.wzk.entity.UserState;
+import com.wzk.util.SendSmsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +24,13 @@ import java.util.Map;
 public class UserServiceImpl implements UserServiceIF {
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
+
+    private SendSmsUtil sendSmsUtil = new SendSmsUtil();
 
     @Override
     public Result getTel(User user) {
-        Result result = new Result();
+        Result result = new Result(2001, "未执行");
         user = userDao.getTel(user);
         result.setCode(2000);
         result.setMessage("成功");
@@ -49,29 +55,41 @@ public class UserServiceImpl implements UserServiceIF {
     }
 
     @Override
-    public Result login(User user, UserState userState) {
+    public Result login(User user, UserState userState, HttpSession session) {
         User u;
         Result result = new Result();
         u = userDao.loginUser(user);
         if (u == null) {
             result.setMessage("手机号或密码错误");
-        } else if (u.getuId() != 0 && u.getStateId() != 2) {
+        } else if (u.getuId() != 0) {
             u.setStateId(2);
             userState.setuId(u.getuId());
             userState.setStateId(2);
             userDao.updateUserStateId(u);
             userDao.addLoginInfo(userState);
+            session.setAttribute("uId", u.getuId());
             result.setCode(2000);
             result.setMessage("登录成功");
             result.setData(u);
-        } else if (u.getStateId() == 2) {
-            u.setStateId(-1);
-            result.setCode(2002);
-            result.setMessage("用户已登录");
-        } else {
+        }else {
             result.setCode(2001);
             result.setMessage("手机号或密码错误");
         }
+
+        return result;
+    }
+
+    @Override
+    public Result addCode(UserAcCode userAcCode) {
+        Result result = new Result(2001, "未执行");
+        try {
+            sendSmsUtil.sendSms(userAcCode.getTel(), userAcCode.getAcCode());
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+        result.setCode(2000);
+        result.setMessage("发送成功");
+        result.setData(userAcCode.getAcCode());
 
         return result;
     }

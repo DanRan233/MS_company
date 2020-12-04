@@ -1,0 +1,60 @@
+package com.wzk.entity;
+
+/**
+ * @author DanRan233
+ * @projectName MS_company
+ * @description: TODO
+ * @date 2020/11/29 10:28
+ */
+public class Department {
+    Integer depId;
+    String depNo;
+    String depName;
+
+    public Department(Integer depId, String depNo, String depName) {
+        this.depId = depId;
+        this.depNo = depNo;
+        this.depName = depName;
+    }
+
+    public Department(Integer depId, String depName) {
+        this.depId = depId;
+        this.depName = depName;
+    }
+
+    public Department() {
+    }
+
+    public Integer getDepId() {
+        return depId;
+    }
+
+    public void setDepId(Integer depId) {
+        this.depId = depId;
+    }
+
+    public String getDepNo() {
+        return depNo;
+    }
+
+    public void setDepNo(String depNo) {
+        this.depNo = depNo;
+    }
+
+    public String getDepName() {
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "depId=" + depId +
+                ", depNo='" + depNo + '\'' +
+                ", depName='" + depName + '\'' +
+                '}';
+    }
+}

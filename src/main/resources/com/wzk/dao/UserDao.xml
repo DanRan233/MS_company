@@ -34,4 +34,9 @@
         update user_state set logoutTime=(select now()),stateId=#{stateId} where uId=#{uId} and stateId=2;
     </update>
 
+    <!-- 用户验证码 -->
+    <insert id="addCode" parameterType="UserAcCode">
+        insert into user_accode(acCode,tel,exTime) values(#{acCode},#{tel},#{exTime});
+    </insert>
+
 </mapper>
