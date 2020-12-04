@@ -55,6 +55,8 @@
           <element id="library" level="project" name="Maven: com.aliyun:aliyun-java-sdk-dysmsapi:1.1.0" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:5.1.8" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:1.2" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
+          <element id="library" level="project" name="Maven: org.glassfish.web:jstl-impl:1.2" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="MS_company/web/Web" />

@@ -13,8 +13,9 @@ public class RandomUtil {
     private Random random = new Random();
 
     /**
-     * description  TODO 获取指定长度的随机数字字符串
-     * date         2020/11/22 14:26
+     * description:获取指定长度的随机数字字符串
+     * TODO:
+     * @date         2020/11/22 14:26
      * @author      DanRan233
      * @Param       [len]
      * @return      java.lang.String

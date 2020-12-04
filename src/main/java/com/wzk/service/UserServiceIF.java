@@ -17,8 +17,6 @@ import java.util.Map;
  */
 public interface UserServiceIF {
 
-    Result getTel(User user);
-
     Result addUser(User user);
 
     Result  login(User user, UserState userState, HttpSession session);

@@ -11,12 +11,14 @@ import java.util.List;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 登录拦截器，保证数据安全性。 TODO
  * @date 2020/12/1 12:56
  */
 public class LoginFilterUtil implements Filter {
 
-    static List list=new ArrayList();
+    // 初始话放行页面，将要放行的文件放入集合中
+    static List list = new ArrayList();
+
     static {
         list.add("/pages/login.html");
         list.add("/user/login");
@@ -38,28 +40,27 @@ public class LoginFilterUtil implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        HttpServletRequest req=(HttpServletRequest)servletRequest;
-        HttpServletResponse res=(HttpServletResponse)servletResponse;
-        HttpSession session=req.getSession();
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse res = (HttpServletResponse) servletResponse;
+        HttpSession session = req.getSession();
         //获取请求路径
-        String path=req.getRequestURI();
-        System.out.println(path);
-        //从session中获取用户ID
-        int uId;
-        try {
-            uId=(Integer) session.getAttribute("uId");
-        }catch (NullPointerException e){
-            uId=0;
-        }
-
-        System.out.println(uId);
-        if(list.contains(path)){
+        String path = req.getRequestURI();
+        //判断是否放行页面及
+        if (list.contains(path)) {
             filterChain.doFilter(req, res);
             return;
-        }else {
-            if(uId!=0){
+        } else {
+            //从session中获取用户ID
+            int uId;
+            try {
+                uId = (Integer) session.getAttribute("uId");
+            } catch (NullPointerException e) {
+                uId = 0;
+            }
+            // 用户ID存在时直接放行，否则返回值登录页面
+            if (uId != 0) {
                 filterChain.doFilter(req, res);
-            }else {
+            } else {
                 res.sendRedirect("/pages/login.html");
             }
         }

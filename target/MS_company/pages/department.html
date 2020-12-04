@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>单位设置</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
+<script src="../js/easyui/jquery.min.js"></script>
+<script src="../js/easyui/jquery.easyui.min.js"></script>
+<script src="../js/dep.js"></script>
+<script src="../js/page.js"></script>
+
+<style type="text/css">
+    li input {
+        cursor: pointer;
+        border-radius: 8px;
+        width: 50px;
+        height: 30px;
+        outline: none;
+        text-align: center;
+    }
+</style>
+<body>
+<div id="w" class="easyui-window" title=" " data-options="modal:true,closed:true,iconCls:'icon-save'"
+     style="background-color:#eaf2ff; width:700px;height:300px;padding:10px;">
+    <table id="table_two" style="width: 100%;">
+        <tr class="tr_two">
+            <td><span>编号：</span></td>
+            <td id="One_One"><input type="Text" id="depNo" name="depNo"></td>
+            <td><span>全称：</span></td>
+            <td id="One_two"><input type="Text" id="depName" name="depName"></td>
+        <tr>
+            <td>
+            <td><input name="Site_ID" value="0" id="depId" type="hidden"></td>
+            </td>
+        </tr>
+        <tr id="tr_Four">
+            <td></td>
+            <td id="Four_One">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="button" value="关闭" onclick="$('#w').window('close')"/></td>
+            <td id="Four_Three">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                    type="button" id="saveCheckScl" value="保存" onclick="Update()"></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div id="Navigation" style="width: 100%;">
+    <input type="text" style="width: 97%; padding:20px ;" readonly value="部门信息">
+    <p></p>
+    <input type="button" id="AddOne" class="input setDepId" value="添加" style="width: 60px;"
+           onclick="$('#w').window('open');cleanWindow()"/>
+    <span style="float: right; margin-right: 30px">
+				<input type="text" id="TextOne" class="input" placeholder="请输入要查询的部门名称"/>
+				<input type="button" value="搜索" id="QueryOne" class="input" onclick="QueryDepartment(1,2)"/>
+			</span>
+</div>
+<div id="content" style="width:98% ;margin-top: 20px">
+    <table id="TableOne" style="width: 100%">
+
+    </table>
+</div>
+<div id="bottom" style="margin-top: 30px;">
+    共有记录<span id="total"></span>条，每页显示5条
+    <Ul style="float: right;">
+        <li style="float: left; margin-right: 20px; list-style:none;" id="li_One"><input type="button" readonly
+                                                                                         value="首页"
+                                                                                         onclick="changePage(this)">
+        </li>
+        <li style="float: left; margin-right: 20px; list-style:none;" id="li_Two"><input type="button" readonly
+                                                                                         value="上一页"
+                                                                                         onclick="changePage(this)">
+        </li>
+        <li style="float: left; margin-right: 20px; list-style:none;" id="li_Three"><input type="text" id="page"
+                                                                                           readonly
+                                                                                           value=""></li>
+        <li style="float: left; margin-right: 20px; list-style:none;" id="li_Four"><input type="button" readonly
+                                                                                          value="下一页"
+                                                                                          onclick="changePage(this)">
+        </li>
+        <li style="float: left; margin-right: 20px; list-style:none;" id="li_Five"><input type="button" readonly
+                                                                                          value="尾页"
+                                                                                          onclick="changePage(this)">
+        </li>
+    </Ul>
+</div>
+</body>
+</html>
+

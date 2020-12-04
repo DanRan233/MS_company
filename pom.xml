@@ -6,7 +6,8 @@
 
     <groupId>org.example</groupId>
     <artifactId>MS_company</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1</version>
+    <packaging>war</packaging>
 
 
     <!-- 初始化各个依赖的版本号 -->
@@ -47,6 +48,12 @@
 
         <!-- log4j核心依赖，2.12.1，更新于2019-08-09 -->
         <log4j-core.version>2.12.1</log4j-core.version>
+
+        <!-- okhttp依赖，4.2.2-->
+        <okhttp.version>4.2.2</okhttp.version>
+
+        <!-- dom4j依赖， -->
+        <dom4j.version>2.1.1</dom4j.version>
 
     </properties>
 
@@ -194,13 +201,13 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.2.2</version>
+            <version>${okhttp.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
-            <version>2.1.1</version>
+            <version>${dom4j.version}</version>
         </dependency>
 
         <!-- 阿里云短信sdk -->

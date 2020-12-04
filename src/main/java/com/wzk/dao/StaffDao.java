@@ -10,15 +10,18 @@ import java.util.Map;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 获取管理信息dao层接口，与对应的映射文件绑定
  * @date 2020/11/29 10:31
  */
 public interface StaffDao {
+
     int addStaff(Staff staff);
 
     int updateStaff(Staff staff);
 
     List<Staff> getStaff(Staff staff);
+
+    int getStaffNum(Staff staff);
 
     int delStaff(Integer sId);
 
@@ -30,7 +33,7 @@ public interface StaffDao {
 
     int updateDep(Department department);
 
-    int getDepNum(String depId);
+    int getDepNum(Department department);
 
     List<Position> getPos(Position position);
 
@@ -40,5 +43,5 @@ public interface StaffDao {
 
     int updatePos(Position position);
 
-    int getPosNum(String posId);
+    int getPosNum(Position position);
 }

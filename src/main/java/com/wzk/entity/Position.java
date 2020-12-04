@@ -3,13 +3,13 @@ package com.wzk.entity;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 职位信息实体类
  * @date 2020/11/29 10:23
  */
 public class Position {
-    Integer posId;
-    String posNo;
-    String posName;
+    private Integer posId; // 职位ID
+    private String posNo;  // 职位编号
+    private String posName; // 职位名称
 
     public Position(Integer posId, String posNo, String posName) {
         this.posId = posId;

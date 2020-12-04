@@ -3,13 +3,13 @@ package com.wzk.entity;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 部门信息实体类。
  * @date 2020/11/29 10:28
  */
 public class Department {
-    Integer depId;
-    String depNo;
-    String depName;
+    private Integer depId;//部门ID
+    private String depNo;//部门编号
+    private String depName;//部门名称
 
     public Department(Integer depId, String depNo, String depName) {
         this.depId = depId;

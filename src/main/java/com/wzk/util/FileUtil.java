@@ -8,13 +8,14 @@ import java.util.Properties;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 读取配置文件工具类 TODO
  * @date 2020/11/22 14:33
  */
 public class FileUtil {
 
     /**
-     * description  TODO 获取配置文件对应值
+     * description：获取配置文件对应值。
+     * TODO:
      * date         2020/11/22 14:47
      * @author      DanRan233
      * @Param       [keyWord]

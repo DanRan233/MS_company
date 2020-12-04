@@ -19,7 +19,7 @@ public interface UserDao {
      * @Param       [user]
      * @return      com.wzk.entity.User
      */
-    User getTel(User user);
+    int getTel(UserAcCode userAcCode);
 
     /**
      * description  TODO

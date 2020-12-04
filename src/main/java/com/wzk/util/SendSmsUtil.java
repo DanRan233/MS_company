@@ -11,7 +11,7 @@ import com.aliyuncs.profile.IClientProfile;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO 阿里云短信发送工具类
+ * @description:  阿里云短信发送工具类
  * @date 2020/11/15 16:13
  */
 public class SendSmsUtil {
@@ -24,15 +24,20 @@ public class SendSmsUtil {
     //读取配置文件
     FileUtil fileUtil=new FileUtil();
 
-    //  阿里云accessKey
-    //static final String accessKeyId = "LTAI4GK32A2eFKk4KweQp4Ey";
-    //static final String accessKeySecret = "zFihyP7XzN1tl0tkdn8cuzXsdDrxmB";
-
+    /**
+     * description: 发送短信工具
+     * TODO:
+     * @date         2020/12/4 18:44
+     * @author      DanRan233
+     * @Param       [telephone, code]
+     * @return      com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse
+     */
     public  SendSmsResponse sendSms(String telephone, String code) throws ClientException {
         //超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
         //初始化acsClient,暂不支持region化
+        // 阿里云accessKeyId及accessKeySecret使用FileUtil工具类读取保证可替换性。
         IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", fileUtil.getProperties("accessKeyId"), fileUtil.getProperties("accessKeySecret"));
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
         IAcsClient acsClient = new DefaultAcsClient(profile);

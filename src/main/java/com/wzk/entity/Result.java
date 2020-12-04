@@ -6,14 +6,13 @@ import java.io.Serializable;
 /**
  * @author DanRan233
  * @projectName MS_company
- * @description: TODO
+ * @description: 返回体封装类 ，改类为接口返回数据封装类，使用泛型以便于封装各种数据类型
  * @date 2020/11/15 15:13
  */
 public class Result<T> implements Serializable {
-
-    private Integer code;
-    private String message;
-    private T data;
+    private Integer code; // 消息码
+    private String message; // 报文
+    private T data; // 返回数据
 
     public Result(Integer code, String message, T data) {
         this.code = code;

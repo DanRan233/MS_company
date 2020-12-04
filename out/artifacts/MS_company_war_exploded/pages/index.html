@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>管理系统</title>
+
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+
+	<link rel="stylesheet" type="text/css"
+		  href="../js/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
+	<script src="../js/easyui/jquery.min.js"></script>
+	<script src="../js/easyui/jquery.easyui.min.js"></script>
+	<script src="../js/page.js"></script>
+
+</head>
+<style type="text/css">
+	a {
+		text-decoration: none;
+		color: #000;
+	}
+
+	#North {
+		height: 100px;
+		background-color: #A3d1d1;
+	}
+
+	#North_h3_One {
+		margin: 0px;
+		/* padding-top: 20px; */
+		font-size: 1em;
+		padding-top: 30px;
+		padding-bottom: 30px;
+		padding-left: 30px;
+	}
+
+	#South {
+		height: 100px;
+	}
+
+	#East {
+		width: 100px;
+	}
+
+	#West {
+		width: 150px;
+	}
+
+	#West_ul_One {
+		list-style: none;
+		margin-top: 0px;
+		padding-left: 0px;
+		padding-top: 0px;
+	}
+
+	#West_one_zero {
+		padding-left: 0px;
+	}
+
+	#zero_div {
+		height: 35px;
+		background-color: #afc5cf;
+	}
+
+	#zero_h5 {
+		margin: 0px;
+		padding-top: 8px;
+		padding-left: 20px;
+	}
+
+	#West_one_One {
+		margin-top: 20px;
+	}
+
+	.one_li {
+		height: 40px;
+		padding-left: 20px;
+	}
+
+	#cenetr {
+		background-color: #eee;
+	}
+</style>
+
+<body class="easyui-layout">
+<div id="North" data-options="region:'north',title:'',split:true">
+	<h3 id="North_h3_One" class="h3">管理系统</h3>
+</div>
+<div id="South" data-options="region:'south',title:'',split:true"></div>
+<!-- <div id="East" data-options="region:'east',title:'',split:true" style="width:100px;"></div> -->
+<div id="West" data-options="region:'west',title:'',split:true">
+	<ul id="West_ul_One" class="ul West_ul">
+		<li id="West_one_zero" class="li one_li">
+			<div id="zero_div" class="div">
+				<h5 id="zero_h5">菜单</h5>
+			</div>
+		</li>
+		<li class="li one_li ">
+			<a href="javascript:void(0)" onclick="getPage('部门信息','/pages/department.html')">部门信息</a>
+		</li>
+		<li  class="li one_li ">
+			<a href="javascript:void(0)" onclick="getPage('职位管理','/pages/position.html')">职位管理</a>
+		</li>
+		<li class="li one_li">
+			<a href="javascript:void(0)" onclick="getPage('员工管理','/pages/staff.html')">员工管理</a>
+		</li>
+
+	</ul>
+</div>
+<div id="center " data-options="region: 'center',title: '' ">
+	<div id="tt" class="easyui-tabs" style="height:100%;width:100%">
+		<div title="Home">
+			<h3>欢迎!</h3>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>
+
